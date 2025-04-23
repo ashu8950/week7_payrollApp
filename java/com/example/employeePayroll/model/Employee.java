@@ -1,73 +1,43 @@
 package com.example.employeePayroll.model;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import java.util.List;
 
-import java.time.LocalDate;
+import com.example.employeePayroll.dto.EmployeePayrollDTO;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "employees")
 public class Employee {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int employeeId;
 
     private String name;
-    private String gender;
     private long salary;
-    private String department;
-    private LocalDate startDate;
-
-  
-    public Long getId() {
-        return id;
+    private String gender;
+    private String startDate;
+    private String note;
+    private String profilePic;
+    private List<String>department;
+    
+    public Employee(int empId, EmployeePayrollDTO empPayrollDTO) {
+    	this.employeeId =empId;
+    	this.name = empPayrollDTO.name;
+    	this.salary = empPayrollDTO.salary;
+    	this.gender = empPayrollDTO.gender;
+    	this.startDate = empPayrollDTO.startDate;
+    	this.note = empPayrollDTO.note;
+    	this.profilePic = empPayrollDTO.profilePic;
+    	this.department = empPayrollDTO.deparment;
     }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
-    public long getSalary() {
-        return salary;
-    }
-
-    public void setSalary(long salary) {
-        this.salary = salary;
-    }
-
-    public LocalDate getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(LocalDate startDate) {
-        this.startDate = startDate;
-    }
-
-	public String getDepartment() {
-		return department;
-	}
-
-	public void setDepartment(String department) {
-		this.department = department;
-	}
+    
 }
