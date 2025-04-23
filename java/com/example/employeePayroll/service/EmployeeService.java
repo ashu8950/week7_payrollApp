@@ -67,4 +67,9 @@ public class EmployeeService {
         emp.setDepartment(dto.getDepartment());
         return emp;
     }
+    
+    public List<Employee> getEmployeesByDepartment(String departmentName) {
+        return repo.findByDepartmentName(departmentName);
+    }
+
 }

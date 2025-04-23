@@ -55,4 +55,10 @@ public class EmployeeController {
         log.info("Deleting employee with ID: {}", id);
         service.deleteEmployee(id);
     }
+    //getting department by name
+    @GetMapping("/department/{name}")
+    public List<Employee> getEmployeesByDepartment(@PathVariable String name) {
+        return service.getEmployeesByDepartment(name);
+    }
+
 }
